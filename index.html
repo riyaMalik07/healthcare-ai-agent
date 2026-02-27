@@ -1,16 +1,89 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Healthcare AI Agent</title>
+    <title>Healthcare AI Agent</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #response {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
 </head>
 
 <body>
-<h2>Healthcare AI Assistant - Team project</h2>
 
-<input type="text" placeholder="Describe your symptoms">
-<button>Submit</button>
+    <div class="container">
 
-<p>AI response will appear here</p>
+        <h2>Healthcare AI Assistant</h2>
+
+        <p>Describe your symptoms:</p>
+
+        <input type="text" id="symptoms" placeholder="e.g. fever, headache">
+
+        <br>
+
+        <button onclick="predict()">Submit</button>
+
+        <p id="response"></p>
+
+    </div>
+
+    <script>
+        function predict() {
+
+            let symptoms = document.getElementById("symptoms").value;
+
+            if (symptoms === "") {
+                document.getElementById("response").innerText = "Please enter symptoms.";
+                return;
+            }
+
+            document.getElementById("response").innerText =
+                "Possible Disease: Common Cold | Urgency: Low | Medicine: Paracetamol";
+
+        }
+    </script>
 
 </body>
+
 </html>
