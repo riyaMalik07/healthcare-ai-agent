@@ -16,7 +16,7 @@
             background: white;
             padding: 30px;
             border-radius: 10px;
-            width: 400px;
+            width: 420px;
             margin: auto;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
@@ -44,8 +44,14 @@
 
         #response {
             margin-top: 20px;
-            font-weight: bold;
-            color: #333;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .disclaimer {
+            margin-top: 15px;
+            font-size: 13px;
+            color: gray;
         }
     </style>
 </head>
@@ -58,41 +64,41 @@
 
         <p>Describe your symptoms:</p>
 
-        <input type="text" id="symptoms" placeholder="e.g. fever, headache">
+        <input type="text" id="symptoms" placeholder="e.g. fever, headache, cough">
 
         <br>
 
         <button onclick="predict()">Submit</button>
 
-        <p id="response"></p>
+        <div id="response"></div>
+
+        <div class="disclaimer">
+            This is not a medical diagnosis. Please consult a healthcare professional.
+        </div>
 
     </div>
 
-        <script>
-    function predict() {
+    <script>
 
-        let symptoms = document.getElementById("symptoms").value.toLowerCase();
+        async function predict() {
 
-        if (symptoms === "") {
-            document.getElementById("response").innerText = "Please enter symptoms.";
-            return;
+            let symptoms = document.getElementById("symptoms").value;
+
+            if (symptoms === "") {
+                document.getElementById("response").innerHTML = "Please enter symptoms.";
+                return;
+            }
+
+            let res = await fetch(`http://127.0.0.1:8000/predict?symptoms=${symptoms}`);
+            let data = await res.json();
+
+            document.getElementById("response").innerHTML =
+                "<b>Disease:</b> " + data.disease + "<br>" +
+                "<b>Urgency:</b> " + data.urgency + "<br>" +
+                "<b>Medicine:</b> " + data.medicine;
         }
 
-        let result = "";
-
-        if (symptoms.includes("fever")) {
-            result = "Possible Disease: Flu | Urgency: Moderate | Medicine: Paracetamol";
-        }
-        else if (symptoms.includes("headache")) {
-            result = "Possible Disease: Migraine | Urgency: Low | Medicine: Ibuprofen";
-        }
-        else {
-            result = "Possible Disease: Common Cold | Urgency: Low | Medicine: Cetirizine";
-        }
-
-        document.getElementById("response").innerText = result;
-    }
-</script>
+    </script>
 
 </body>
 

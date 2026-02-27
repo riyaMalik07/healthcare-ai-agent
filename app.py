@@ -37,9 +37,16 @@ def predict(symptoms: str):
             "medicine": "Ibuprofen"
         }
 
-    else:
+    elif "cough" in symptoms:
         return {
             "disease": "Common Cold",
             "urgency": "Low",
             "medicine": "Cetirizine"
+        }
+
+    else:
+        return {
+            "disease": "General Infection",
+            "urgency": "Low",
+            "medicine": "Consult Doctor"
         }
