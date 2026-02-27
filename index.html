@@ -68,21 +68,31 @@
 
     </div>
 
-    <script>
-        function predict() {
+        <script>
+    function predict() {
 
-            let symptoms = document.getElementById("symptoms").value;
+        let symptoms = document.getElementById("symptoms").value.toLowerCase();
 
-            if (symptoms === "") {
-                document.getElementById("response").innerText = "Please enter symptoms.";
-                return;
-            }
-
-            document.getElementById("response").innerText =
-                "Possible Disease: Common Cold | Urgency: Low | Medicine: Paracetamol";
-
+        if (symptoms === "") {
+            document.getElementById("response").innerText = "Please enter symptoms.";
+            return;
         }
-    </script>
+
+        let result = "";
+
+        if (symptoms.includes("fever")) {
+            result = "Possible Disease: Flu | Urgency: Moderate | Medicine: Paracetamol";
+        }
+        else if (symptoms.includes("headache")) {
+            result = "Possible Disease: Migraine | Urgency: Low | Medicine: Ibuprofen";
+        }
+        else {
+            result = "Possible Disease: Common Cold | Urgency: Low | Medicine: Cetirizine";
+        }
+
+        document.getElementById("response").innerText = result;
+    }
+</script>
 
 </body>
 
