@@ -1,0 +1,10 @@
+{
+ "Fever": {
+   "brand": "Crocin",
+   "generic": "Paracetamol"
+ },
+ "Cold": {
+   "brand": "Vicks",
+   "generic": "Antihistamine"
+ }
+}
